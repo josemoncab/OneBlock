@@ -1,0 +1,6 @@
+name: OneBlock
+version: ${version}
+main: ${group}.OneBlock
+description: An example plugin
+author: josemc
+api-version: '1.20'
