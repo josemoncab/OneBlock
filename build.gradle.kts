@@ -1,40 +1,29 @@
 plugins {
     id("java")
+    id("xyz.jpenilla.run-paper") version "2.3.0"
 }
 
-group = "dev.josemc"
-version = "${project.property("version")}"
+group = "dev.josemoncab"
+version = "${project.property("pluginVersion")}"
 
 repositories {
     mavenCentral()
 
-    // Paper repo
-    maven ("https://repo.papermc.io/repository/maven-public/")
-
-    maven ("https://oss.sonatype.org/content/groups/public/")
+    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://oss.sonatype.org/content/repositories/central")
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:${project.property("minecraftVersion")}-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:${project.property("minecraftVersion")}-R0.1-SNAPSHOT")
 }
 
-var targetJavaVersion = 17
 java {
-    val javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 tasks {
-    withType<JavaCompile>().configureEach {
-        options.encoding = "UTF-8"
-
-        if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible) {
-            options.release.set(targetJavaVersion)
-        }
+    runServer {
+        minecraftVersion("${project.property("minecraftVersion")}")
     }
 
     processResources {

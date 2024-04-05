@@ -1,6 +1,6 @@
 name: OneBlock
 version: '${version}'
 main: dev.josemc.oneblock.OneBlock
-description: An example plugin
-author: josemc
-api-version: '1.20'
+description: A Skyblock-like gamemode but only one block
+api-version: '1.21'
+authors: [ josemoncab ]
