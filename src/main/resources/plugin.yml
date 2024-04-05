@@ -1,0 +1,6 @@
+name: OneBlock
+version: '${version}'
+main: dev.josemc.oneblock.OneBlock
+description: An example plugin
+author: josemc
+api-version: '1.20'
